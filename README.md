@@ -1,6 +1,6 @@
 # Blazor / EditorJS
 
-Please note that this is a fork of the original project located [![here](https://github.com/kibblewhite/BlazorEditorJs)] which was forked for my own specific needs and is not actively maintained for reasons other than some personal projects.
+Please note that this is a fork of the original project located ![here](https://github.com/kibblewhite/BlazorEditorJs) which was forked for my own specific needs and is not actively maintained for reasons other than some personal projects.
 A Blazor component implementation for EditorJS.io a block styled editor.
 
 A simple editorjs implementation as a blazor component.
