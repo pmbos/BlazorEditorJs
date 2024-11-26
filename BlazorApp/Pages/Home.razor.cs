@@ -3,6 +3,7 @@ using Microsoft.JSInterop;
 using System.Text.Json.Nodes;
 using System.Text.Json;
 using EditorJs;
+using EditorJs.Models;
 
 namespace BlazorApp.Pages;
 public partial class Home : ComponentBase
@@ -12,7 +13,7 @@ public partial class Home : ComponentBase
 
     private JsonObject? EditorValue { get; set; }
     public JsonObject EditorTools { get; set; } = default!;
-    public JsonObject EditorConfigurations { get; set; } = default!;
+    public IEditorJsConfiguration EditorConfigurations { get; set; } = default!;
     public Task OnEditorValueChanged(JsonObject value) => Task.FromResult(EditorValue = value);
 
     /// <summary>
@@ -22,7 +23,7 @@ public partial class Home : ComponentBase
 
     public JsonObject? EditorValue02 { get; set; }
     public JsonObject EditorTools02 { get; set; } = default!;
-    public JsonObject EditorConfigurations02 { get; set; } = default!;
+    public IEditorJsConfiguration EditorConfigurations02 { get; set; } = default!;
     public Task OnEditorValue02Changed(JsonObject value) => Task.FromResult(EditorValue02 = value);
 
     protected override void OnAfterRender(bool first_render)
@@ -95,7 +96,11 @@ public partial class Home : ComponentBase
         """;
 
         EditorTools = Editor.ParseEditorJsonToolOptions(editor_tools);
-        EditorConfigurations = JsonNode.Parse("""{ "DefaultBlock": "text", "CodexEditorRedactor" : { "style": { "paddingBottom": "0px", "maxHeight": "64px", "overflow": "hidden" } } }""")?.AsObject() ?? [];
+        IEditorJsConfiguration config = new DefaultEditorJsConfiguration()
+        {
+            DefaultBlock = "text", PlaceHolder = "...", ReadOnly = true
+        };
+        EditorConfigurations = config;
 
         // If the browser recieves the following error: "Saving failed due to the Error TypeError: Cannot read properties of undefined (reading 'sanitizeConfig')"
         // This is because edtorjs has certain dependencies caused by the `header.inlineToolbar' array values. EditorJS should have the appropriate tools/plugins enabled.
@@ -182,7 +187,11 @@ public partial class Home : ComponentBase
 
         EditorTools02 = Editor.ParseEditorJsonToolOptions(editor_tools_02);
         EditorValue02 = Editor.CreateEmptyJsonObject();
-        EditorConfigurations02 = JsonNode.Parse("""{ "DefaultBlock": "paragraph" }""")?.AsObject() ?? [];
+        IEditorJsConfiguration config2 = new DefaultEditorJsConfiguration()
+        {
+            DefaultBlock = "text", PlaceHolder = "..."
+        };
+        EditorConfigurations02 = config2;
 
     }
 

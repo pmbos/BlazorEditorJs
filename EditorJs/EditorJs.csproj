@@ -5,7 +5,7 @@
 		<LangVersion>12.0</LangVersion>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<Version>1.2.0.22</Version>
+		<Version>1.2.0.23</Version>
 		<AssemblyName>EditorJs</AssemblyName>
 		<RootNamespace>EditorJs</RootNamespace>
 		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
@@ -16,6 +16,9 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<IsPackable>true</IsPackable>
+		<Authors>pmbos</Authors>
+		<Company />
+		<Product />
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -194,37 +194,18 @@
             tools = Object.assign(tools, output);
         }
 
-        let options = {
+        const options = {
             data: jsob,
-            readOnly: false,
+            readOnly: configurations?.readOnly ?? false,
+            autofocus: configurations?.autofocus ?? false,
             tools: tools,
+            defaultBlock: configurations?.defaultBlock ?? 'MISSING DEFAULT BLOCK',
+            placeholder: configurations?.placeholder ?? '[placeholder]',
+            logLevel: configurations?.logLevel ?? 'VERBOSE',
             onChange: (api, event) => {
-
-                // let block_count_limit = typeof configurations.BlockCountLimit === 'undefined' ? 0 : configurations.BlockCountLimit;
-                //if (block_count_limit !== 0) {
-                //    let block_count = api.blocks.getBlocksCount();
-                //    if (block_count > block_count_limit) {
-                //        let block_limit_index = block_count - 2;
-                //        let current_block_index = api.blocks.getCurrentBlockIndex();
-                //        api.blocks.delete(current_block_index);
-                //        api.caret.setToBlock('end', block_limit_index);
-                //        for (let i = block_count - 1; i >= block_limit_index; i--) {
-                //            if (i <= block_limit_index || i == current_block_index) { continue; }
-                //            api.blocks.delete(i);
-                //        }
-                //    }
-                //}
-
-                // <div class="ce-popover-item" data-item-name="text" style="display: none;"></div>
-
                 editorjs_element_save_debounced_callback(api, event, editorjs_element, instance, callback);
             }
         };
-
-        if (typeof configurations.DefaultBlock !== 'undefined') {
-            let default_block_option = { defaultBlock: configurations.DefaultBlock };
-            options = Object.assign(options, default_block_option);
-        }
 
         let editorjs_element = editorjs.editorjs_element_selector(id, element_id, options);
 

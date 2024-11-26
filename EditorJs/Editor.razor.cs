@@ -1,3 +1,5 @@
+using EditorJs.Models;
+
 namespace EditorJs;
 
 public partial class Editor : ComponentBase
@@ -11,7 +13,7 @@ public partial class Editor : ComponentBase
     [Parameter] public string? Class { get; init; }
     [Parameter] public string? Title { get; init; }
     [Parameter] public required JsonObject Tools { get; init; }
-    [Parameter] public required JsonObject Configurations { get; init; }
+    [Parameter] public required IEditorJsConfiguration Configurations { get; init; }
 
     private JsonObject _value = [];
     public ElementReference ElementReference;
